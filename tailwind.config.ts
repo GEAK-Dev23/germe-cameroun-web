@@ -56,6 +56,14 @@ const config: Config = {
           "0%": { transform: "scale(1)" },
           "100%": { transform: "scale(1.08)" },
         },
+        "menu-pop": {
+          "0%": { opacity: "0", transform: "scale(0.95) translateY(-8px)" },
+          "100%": { opacity: "1", transform: "scale(1) translateY(0)" },
+        },
+        "modal-fade": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         "spin-slow": "spin-slow 9s linear infinite",
@@ -66,6 +74,8 @@ const config: Config = {
         sway: "sway 4s ease-in-out infinite",
         "fade-up": "fade-up 0.7s ease-out forwards",
         "hero-zoom": "hero-zoom 20s ease-out forwards",
+        "menu-pop": "menu-pop 0.18s ease-out forwards",
+        "modal-fade": "modal-fade 0.2s ease-out forwards",
       },
     },
   },

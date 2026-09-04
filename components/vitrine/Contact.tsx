@@ -1,8 +1,9 @@
 import Reveal from "@/components/vitrine/Reveal";
+import MirrorImage from "@/components/vitrine/MirrorImage";
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-white">
+    <section id="contact" className="bg-germe-blueLight">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-2 md:px-6 md:py-28">
         <Reveal>
           <p className="text-xs font-semibold uppercase tracking-wide text-germe-green">
@@ -17,15 +18,17 @@ export default function Contact() {
           </p>
 
           <div className="mt-6 grid grid-cols-2 gap-3">
-            <img
+            <MirrorImage
               src="/images/contact/formation-terrain.jpg"
               alt="Session de formation sur le terrain"
-              className="aspect-square rounded-xl object-cover transition duration-700 hover:scale-105"
+              className="aspect-square rounded-xl"
+              imgClassName="transition duration-700 hover:scale-105"
             />
-            <img
+            <MirrorImage
               src="/images/contact/recolte-mains.jpg"
               alt="Mains tenant une récolte"
-              className="mt-6 aspect-square rounded-xl object-cover transition duration-700 hover:scale-105"
+              className="mt-6 aspect-square rounded-xl"
+              imgClassName="transition duration-700 hover:scale-105"
             />
           </div>
         </Reveal>
@@ -68,7 +71,7 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-full bg-germe-green px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-germe-greenDark hover:shadow-lg"
+                className="w-full rounded-full bg-gradient-to-r from-germe-blue to-germe-green px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-lg"
               >
                 Envoyer
               </button>

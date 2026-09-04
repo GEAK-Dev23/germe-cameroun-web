@@ -1,4 +1,5 @@
 import Reveal from "@/components/vitrine/Reveal";
+import MirrorImage from "@/components/vitrine/MirrorImage";
 
 const ARTICLES = [
   {
@@ -34,16 +35,18 @@ export default function Blog() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {ARTICLES.map((a, i) => (
             <Reveal key={a.titre} delay={i * 100}>
-              <article className="overflow-hidden rounded-xl border border-germe-ink/10 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-                <div className="overflow-hidden">
-                  <img
-                    src={a.image}
-                    alt={a.titre}
-                    className="aspect-video w-full object-cover transition duration-700 hover:scale-105"
-                  />
-                </div>
+              <article className="overflow-hidden rounded-xl border border-germe-ink/10 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:scale-105 hover:shadow-lg">
+                <MirrorImage
+                  src={a.image}
+                  alt={a.titre}
+                  className="aspect-video w-full"
+                  imgClassName="transition duration-700 hover:scale-105"
+                  intensite={0.22}
+                />
                 <div className="p-5">
-                  <p className="text-xs text-germe-ink/50">{a.date}</p>
+                  <span className="inline-block rounded-full bg-germe-wheat px-3 py-1 text-xs font-medium text-germe-ink">
+                    {a.date}
+                  </span>
                   <h3 className="mt-2 font-display text-base font-semibold text-germe-ink">
                     {a.titre}
                   </h3>

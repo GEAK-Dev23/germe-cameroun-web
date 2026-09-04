@@ -42,17 +42,36 @@ export default function Offres() {
           <p className="text-xs font-semibold uppercase tracking-wide text-germe-green">
             Nos domaines
           </p>
-          <h2 className="mt-2 font-display text-2xl font-semibold text-germe-ink md:text-3xl">
-            Ce que GERME Cameroun propose
-          </h2>
+          <div className="relative inline-block">
+            <h2 className="mt-2 font-display text-2xl font-semibold text-germe-ink md:text-3xl">
+              Ce que GERME Cameroun propose
+            </h2>
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-full select-none whitespace-nowrap font-display text-2xl font-semibold text-germe-ink [transform:scaleY(-1)] md:text-3xl"
+              style={{
+                opacity: 0.06,
+                maskImage:
+                  "linear-gradient(to bottom, rgba(0,0,0,0.8), transparent)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, rgba(0,0,0,0.8), transparent)",
+              }}
+            >
+              Ce que GERME Cameroun propose
+            </span>
+          </div>
         </Reveal>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
           {OFFRES.map((o, i) => (
             <Reveal key={o.titre} delay={(i % 2) * 100}>
-              <div className="flex h-full items-start gap-4 rounded-xl border border-germe-ink/10 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+              <div className="flex h-full items-start gap-4 rounded-xl border border-germe-ink/10 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:scale-105 hover:shadow-lg">
                 <span
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-germe-blueLight text-2xl"
+                  className={
+                    i % 2 === 0
+                      ? "flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-germe-green/15 text-2xl"
+                      : "flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-germe-wheat text-2xl"
+                  }
                   aria-hidden="true"
                 >
                   {o.icone}

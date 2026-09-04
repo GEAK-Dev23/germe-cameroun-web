@@ -1,4 +1,5 @@
 import Reveal from "@/components/vitrine/Reveal";
+import MirrorImage from "@/components/vitrine/MirrorImage";
 
 export default function Vision() {
   return (
@@ -18,23 +19,21 @@ export default function Vision() {
           </p>
           <a
             href="#services"
-            className="mt-6 inline-block rounded-full bg-germe-green px-6 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-germe-greenDark hover:shadow-lg"
+            className="mt-6 inline-block rounded-full bg-gradient-to-r from-germe-blue to-germe-green px-6 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-lg"
           >
             Voir nos domaines
           </a>
         </Reveal>
 
-        <Reveal
-          delay={120}
-          className="relative overflow-hidden rounded-2xl shadow-lg"
-        >
-          <img
+        <Reveal delay={120} className="relative shadow-lg">
+          <MirrorImage
             src="/images/vision/exploitation-moderne.jpg"
             alt="Exploitation agricole moderne avec tracteur"
-            className="aspect-video w-full object-cover transition duration-700 hover:scale-105"
+            className="aspect-video w-full rounded-2xl"
+            imgClassName="transition duration-700 hover:scale-105"
           />
-          <div className="absolute inset-0 flex items-center justify-center bg-germe-ink/20">
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-xl text-germe-blue shadow transition hover:scale-110">
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-2xl bg-germe-ink/20">
+            <span className="pointer-events-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-xl text-germe-blue shadow transition hover:scale-110">
               ▶
             </span>
           </div>

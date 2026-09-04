@@ -23,10 +23,8 @@ const RESEAUX = [
 
 export default function Footer() {
   return (
-    <footer
-      id="contact-footer"
-      className="border-t border-germe-ink/10 bg-germe-blue text-white"
-    >
+    <footer id="contact-footer" className="bg-germe-blue text-white">
+      <div className="h-1 w-full bg-gradient-to-r from-germe-blue to-germe-green" />
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-3 md:px-6">
         <div>
           <p className="font-display text-lg font-semibold">GERME Cameroun</p>

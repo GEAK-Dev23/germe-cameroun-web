@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "@/components/vitrine/Reveal";
+import MirrorImage from "@/components/vitrine/MirrorImage";
 
 const AVIS = [
   {
@@ -25,7 +26,7 @@ export default function Temoignages() {
   const avis = AVIS[index];
 
   return (
-    <section className="bg-germe-cream">
+    <section className="bg-gradient-to-br from-germe-blueLight to-germe-greenLight">
       <div className="mx-auto max-w-3xl px-5 py-20 text-center md:px-6">
         <Reveal>
           <p className="text-xs font-semibold uppercase tracking-wide text-germe-green">
@@ -38,24 +39,27 @@ export default function Temoignages() {
 
         <Reveal
           delay={120}
-          className="mt-10 rounded-2xl border border-germe-ink/10 bg-white p-8 text-left shadow-sm"
+          className="mt-10 rounded-2xl border border-white/60 bg-white p-8 text-left shadow-md"
         >
-          <div className="flex items-center gap-4">
-            <img
-              src={avis.photo}
-              alt={avis.nom}
-              className="h-14 w-14 rounded-full object-cover"
-            />
-            <div>
-              <p className="font-display font-semibold text-germe-ink">
-                {avis.nom}
-              </p>
-              <p className="text-xs text-germe-ink/60">{avis.lieu}</p>
+          <div key={index} className="animate-fade-up">
+            <div className="flex items-center gap-4">
+              <MirrorImage
+                src={avis.photo}
+                alt={avis.nom}
+                className="h-14 w-14 rounded-full"
+                intensite={0.18}
+              />
+              <div>
+                <p className="font-display font-semibold text-germe-ink">
+                  {avis.nom}
+                </p>
+                <p className="text-xs text-germe-ink/60">{avis.lieu}</p>
+              </div>
             </div>
+            <p className="mt-4 text-sm leading-relaxed text-germe-ink/70">
+              « {avis.texte} »
+            </p>
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-germe-ink/70">
-            « {avis.texte} »
-          </p>
         </Reveal>
 
         <div className="mt-6 flex items-center justify-center gap-4">
@@ -63,7 +67,7 @@ export default function Temoignages() {
             type="button"
             onClick={() => setIndex((i) => (i - 1 + AVIS.length) % AVIS.length)}
             aria-label="Témoignage précédent"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-germe-ink/20 text-germe-ink transition hover:border-germe-green hover:text-germe-green"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-germe-ink/20 bg-white text-germe-ink transition hover:-translate-x-1 hover:border-germe-green hover:text-germe-green"
           >
             ←
           </button>
@@ -82,7 +86,7 @@ export default function Temoignages() {
             type="button"
             onClick={() => setIndex((i) => (i + 1) % AVIS.length)}
             aria-label="Témoignage suivant"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-germe-ink/20 text-germe-ink transition hover:border-germe-green hover:text-germe-green"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-germe-ink/20 bg-white text-germe-ink transition hover:translate-x-1 hover:border-germe-green hover:text-germe-green"
           >
             →
           </button>

@@ -151,8 +151,8 @@ const BRANCHES: Noeud[] = [
 
 function classesBranche(actif: boolean) {
   return actif
-    ? "group flex w-full flex-col items-center rounded-lg border-2 border-germe-green/40 bg-germe-greenLight px-2 py-3 text-center transition hover:-translate-y-0.5 hover:border-germe-green hover:shadow-md"
-    : "group flex w-full flex-col items-center rounded-lg border-2 border-dashed border-germe-ink/25 bg-germe-ink/5 px-2 py-3 text-center opacity-80 transition hover:-translate-y-0.5 hover:opacity-100 hover:shadow-md";
+    ? "group flex w-full flex-col items-center rounded-lg border-2 border-germe-green/40 bg-white px-2 py-3 text-center shadow-sm transition hover:-translate-y-0.5 hover:scale-105 hover:border-germe-green hover:shadow-md"
+    : "group flex w-full flex-col items-center rounded-lg border-2 border-dashed border-germe-ink/25 bg-white/70 px-2 py-3 text-center opacity-80 shadow-sm transition hover:-translate-y-0.5 hover:scale-105 hover:opacity-100 hover:shadow-md";
 }
 
 export default function Organigramme() {
@@ -240,8 +240,8 @@ export default function Organigramme() {
               onClick={() => setOuvert(b)}
               className={
                 actif
-                  ? "flex w-full items-center justify-between rounded-lg border-2 border-germe-green/40 bg-germe-greenLight px-4 py-3 text-left"
-                  : "flex w-full items-center justify-between rounded-lg border-2 border-dashed border-germe-ink/25 bg-germe-ink/5 px-4 py-3 text-left"
+                  ? "flex w-full items-center justify-between rounded-lg border-2 border-germe-green/40 bg-white px-4 py-3 text-left shadow-sm transition hover:scale-[1.02]"
+                  : "flex w-full items-center justify-between rounded-lg border-2 border-dashed border-germe-ink/25 bg-white/70 px-4 py-3 text-left shadow-sm transition hover:scale-[1.02]"
               }
             >
               <span>
@@ -270,11 +270,11 @@ export default function Organigramme() {
       {/* ---------- Panneau de détails ---------- */}
       {ouvert && (
         <div
-          className="fixed inset-0 z-[60] flex items-end justify-center bg-germe-ink/50 p-0 md:items-center md:p-6"
+          className="fixed inset-0 z-[60] flex items-end justify-center bg-germe-ink/50 p-0 animate-modal-fade md:items-center md:p-6"
           onClick={() => setOuvert(null)}
         >
           <div
-            className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-t-2xl bg-white p-6 shadow-xl md:rounded-2xl"
+            className="max-h-[85vh] w-full max-w-lg animate-menu-pop overflow-y-auto rounded-t-2xl bg-white p-6 shadow-xl md:rounded-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">

@@ -1,24 +1,27 @@
 import Reveal from "@/components/vitrine/Reveal";
+import MirrorImage from "@/components/vitrine/MirrorImage";
 import Organigramme from "@/components/organigramme/Organigramme";
 
 export default function Inspiration() {
   return (
-    <section id="apropos" className="bg-white">
+    <section id="apropos" className="bg-germe-greenLight">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-2 md:px-6 md:py-28">
         {/* Collage photo */}
         <Reveal className="relative mx-auto w-full max-w-sm">
-          <div className="aspect-[4/5] w-3/5 overflow-hidden rounded-2xl shadow-lg">
-            <img
+          <div className="aspect-[4/5] w-3/5 shadow-lg">
+            <MirrorImage
               src="/images/inspiration/agriculteur-terrain.jpg"
               alt="Agriculteur au travail sur le terrain"
-              className="h-full w-full object-cover transition duration-700 hover:scale-105"
+              className="h-full w-full rounded-2xl"
+              imgClassName="animate-hero-zoom transition duration-700 hover:scale-105"
             />
           </div>
-          <div className="absolute bottom-0 right-0 aspect-[4/5] w-3/5 overflow-hidden rounded-2xl border-4 border-white shadow-lg">
-            <img
+          <div className="absolute bottom-0 right-0 aspect-[4/5] w-3/5 border-4 border-white shadow-lg">
+            <MirrorImage
               src="/images/inspiration/mains-plante.jpg"
               alt="Mains tenant une jeune pousse"
-              className="h-full w-full object-cover transition duration-700 hover:scale-105"
+              className="h-full w-full rounded-2xl"
+              imgClassName="animate-hero-zoom transition duration-700 hover:scale-105"
             />
           </div>
           <div className="absolute -left-4 top-1/3 flex h-20 w-20 items-center justify-center rounded-full bg-germe-blue text-center text-xs font-semibold text-white shadow-lg">
@@ -63,7 +66,7 @@ export default function Inspiration() {
       </div>
 
       {/* Organigramme, intégré à la section "À propos" */}
-      <div className="border-t border-germe-ink/10 bg-germe-cream">
+      <div className="border-t border-germe-ink/10 bg-gradient-to-br from-germe-blueLight to-germe-greenLight">
         <div className="mx-auto max-w-6xl px-5 py-20 md:px-6">
           <Organigramme />
         </div>

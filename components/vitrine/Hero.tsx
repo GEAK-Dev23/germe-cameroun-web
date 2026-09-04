@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <section id="accueil" className="relative isolate overflow-hidden">
@@ -6,12 +8,12 @@ export default function Hero() {
         className="absolute inset-0 -z-10 animate-hero-zoom bg-germe-green bg-cover bg-center"
         style={{ backgroundImage: "url('/images/hero/champ-agricole.jpg')" }}
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-germe-ink/80 via-germe-ink/50 to-germe-ink/30" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-germe-blueDark/85 via-germe-blue/50 to-germe-green/45" />
 
       <div className="mx-auto flex min-h-[560px] max-w-6xl flex-col justify-center px-5 py-24 md:px-6">
-        <p className="animate-fade-up text-xs font-semibold uppercase tracking-[0.2em] text-germe-wheat">
+        <span className="animate-fade-up inline-block w-fit rounded-full bg-germe-wheat px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-germe-ink shadow">
           Agriculture · Élevage · Formation
-        </p>
+        </span>
         <h1
           className="mt-4 max-w-2xl animate-fade-up font-display text-3xl font-semibold leading-[1.1] text-white sm:text-4xl md:text-6xl"
           style={{ animationDelay: "120ms" }}
@@ -37,8 +39,8 @@ export default function Hero() {
             Découvrir GERME
             <span aria-hidden="true">→</span>
           </a>
-          <a
-            href="#formations"
+          <Link
+            href="/plateforme"
             className="inline-flex items-center gap-2 rounded-full border-2 border-white px-7 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white hover:text-germe-blue hover:shadow-lg"
           >
             <span
@@ -48,7 +50,7 @@ export default function Hero() {
               ▶
             </span>
             Se former
-          </a>
+          </Link>
         </div>
       </div>
     </section>
