@@ -1,75 +1,64 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Reveal from "@/components/vitrine/Reveal";
 import MirrorImage from "@/components/vitrine/MirrorImage";
+import { formationsApi, ApiError, type Formation } from "@/lib/api";
 
-export type Formation = {
-  id: string;
-  titre: string;
-  description: string;
-  image: string;
-  estPayant: boolean;
-  prixFcfa?: number;
-  categorie: string;
-  progression?: number; // 0-100, présent seulement si déjà commencée
-};
-
-// Données de démonstration — à remplacer par un appel à l'API NestJS
-// (GET /formations) une fois le backend branché.
-export const FORMATIONS_DEMO: Formation[] = [
-  {
-    id: "intro-agriculture-durable",
-    titre: "Introduction à l'agriculture durable",
-    description:
-      "Les bases pour démarrer une exploitation respectueuse des sols.",
-    image: "/images/produits/maraichage.jpg",
-    estPayant: false,
-    categorie: "Agriculture",
-    progression: 40,
-  },
-  {
-    id: "elevage-volailles-fondamentaux",
-    titre: "Élevage de volailles : les fondamentaux",
-    description: "Alimentation, santé animale et rentabilité d'un poulailler.",
-    image: "/images/produits/betail.jpg",
-    estPayant: false,
-    categorie: "Élevage",
-  },
-  {
-    id: "maraichage-intensif-hors-sol",
-    titre: "Maraîchage intensif hors-sol",
-    description: "Techniques modernes pour maximiser le rendement au m².",
-    image: "/images/produits/manioc.jpg",
-    estPayant: true,
-    prixFcfa: 15000,
-    categorie: "Agriculture",
-  },
-  {
-    id: "plan-affaires-exploitation",
-    titre: "Monter et financer son exploitation",
-    description:
-      "Structurer un plan d'affaires solide et convaincre un bailleur.",
-    image: "/images/produits/cacao.jpg",
-    estPayant: true,
-    prixFcfa: 20000,
-    categorie: "Gestion",
-  },
-  {
-    id: "machinisme-agricole",
-    titre: "Machinisme agricole",
-    description: "Utilisation et entretien courant des équipements motorisés.",
-    image: "/images/produits/mais.jpg",
-    estPayant: true,
-    prixFcfa: 12000,
-    categorie: "Équipement",
-  },
-];
+const IMAGE_PAR_DEFAUT = "/images/produits/maraichage.jpg";
 
 export default function CatalogueFormations() {
+  const [formations, setFormations] = useState<Formation[]>([]);
+  const [chargement, setChargement] = useState(true);
+  const [erreur, setErreur] = useState<string | null>(null);
+
+  useEffect(() => {
+    formationsApi
+      .listerPubliees()
+      .then(setFormations)
+      .catch((err) =>
+        setErreur(
+          err instanceof ApiError
+            ? err.message
+            : "Impossible de charger les formations.",
+        ),
+      )
+      .finally(() => setChargement(false));
+  }, []);
+
+  if (chargement) {
+    return (
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="h-72 animate-pulse rounded-xl bg-germe-ink/5"
+          />
+        ))}
+      </div>
+    );
+  }
+
+  if (erreur) {
+    return (
+      <p className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+        {erreur}
+      </p>
+    );
+  }
+
+  if (formations.length === 0) {
+    return (
+      <p className="rounded-xl border border-germe-ink/10 bg-white p-8 text-center text-sm text-germe-ink/60">
+        Aucune formation publiée pour le moment — revenez bientôt.
+      </p>
+    );
+  }
+
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {FORMATIONS_DEMO.map((f, i) => (
+      {formations.map((f, i) => (
         <Reveal key={f.id} delay={(i % 3) * 90}>
           <Link
             href={`/plateforme/formations/${f.id}`}
@@ -77,7 +66,7 @@ export default function CatalogueFormations() {
           >
             <div className="relative">
               <MirrorImage
-                src={f.image}
+                src={f.imageCouverture ?? IMAGE_PAR_DEFAUT}
                 alt={f.titre}
                 className="aspect-video w-full"
                 imgClassName="transition duration-700 group-hover:scale-105"
@@ -91,7 +80,7 @@ export default function CatalogueFormations() {
                 }
               >
                 {f.estPayant
-                  ? `${f.prixFcfa?.toLocaleString("fr-FR")} FCFA`
+                  ? `${f.prixFcfa.toLocaleString("fr-FR")} FCFA`
                   : "Gratuit"}
               </span>
             </div>
@@ -107,30 +96,15 @@ export default function CatalogueFormations() {
                 {f.description}
               </p>
 
-              {typeof f.progression === "number" ? (
-                <div className="mt-4">
-                  <div className="mb-1 flex justify-between text-xs font-medium text-germe-ink/70">
-                    <span>Progression</span>
-                    <span>{f.progression}%</span>
-                  </div>
-                  <div className="h-1.5 w-full rounded-full bg-germe-ink/10">
-                    <div
-                      className="h-1.5 rounded-full bg-germe-green"
-                      style={{ width: `${f.progression}%` }}
-                    />
-                  </div>
-                </div>
-              ) : (
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-germe-blue">
-                  Découvrir
-                  <span
-                    aria-hidden="true"
-                    className="transition group-hover:translate-x-0.5"
-                  >
-                    →
-                  </span>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-germe-blue">
+                Découvrir
+                <span
+                  aria-hidden="true"
+                  className="transition group-hover:translate-x-0.5"
+                >
+                  →
                 </span>
-              )}
+              </span>
             </div>
           </Link>
         </Reveal>

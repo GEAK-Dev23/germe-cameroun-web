@@ -1,56 +1,66 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Reveal from "@/components/vitrine/Reveal";
-import { FORMATIONS_DEMO } from "@/components/plateforme/CatalogueFormations";
-
-// Structure de démonstration — à remplacer par un appel à l'API NestJS
-// (GET /formations/:id/curriculum) une fois le backend branché.
-const MODULES_DEMO = [
-  {
-    id: "m1",
-    titre: "Module 1 — Préparer le terrain",
-    chapitres: [
-      {
-        id: "c1",
-        titre: "Chapitre 1 — Analyse du sol",
-        lecons: [
-          { id: "l1", titre: "Reconnaître un sol fertile", dureeMin: 8 },
-          {
-            id: "l2",
-            titre: "Prélever et interpréter un échantillon",
-            dureeMin: 12,
-          },
-        ],
-      },
-      {
-        id: "c2",
-        titre: "Chapitre 2 — Préparation avant semis",
-        lecons: [{ id: "l3", titre: "Labour et amendement", dureeMin: 10 }],
-      },
-    ],
-  },
-  {
-    id: "m2",
-    titre: "Module 2 — Conduite de culture",
-    chapitres: [
-      {
-        id: "c3",
-        titre: "Chapitre 1 — Semis et plantation",
-        lecons: [
-          { id: "l4", titre: "Choisir la bonne période", dureeMin: 9 },
-          { id: "l5", titre: "Techniques de semis", dureeMin: 14 },
-        ],
-      },
-    ],
-  },
-];
+import {
+  formationsApi,
+  ApiError,
+  type FormationAvecCurriculum,
+} from "@/lib/api";
 
 export default function FormationDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const formation =
-    FORMATIONS_DEMO.find((f) => f.id === params.id) ?? FORMATIONS_DEMO[0];
+  const [formation, setFormation] = useState<FormationAvecCurriculum | null>(
+    null,
+  );
+  const [chargement, setChargement] = useState(true);
+  const [erreur, setErreur] = useState<string | null>(null);
+
+  useEffect(() => {
+    formationsApi
+      .obtenirUne(params.id)
+      .then(setFormation)
+      .catch((err) =>
+        setErreur(
+          err instanceof ApiError
+            ? err.message
+            : "Impossible de charger cette formation.",
+        ),
+      )
+      .finally(() => setChargement(false));
+  }, [params.id]);
+
+  if (chargement) {
+    return (
+      <div className="mx-auto max-w-6xl px-5 py-20 text-center text-germe-ink/50">
+        Chargement...
+      </div>
+    );
+  }
+
+  if (erreur || !formation) {
+    return (
+      <div className="mx-auto max-w-6xl px-5 py-20 text-center">
+        <p className="text-sm text-red-600">
+          {erreur ?? "Formation introuvable."}
+        </p>
+        <Link
+          href="/plateforme"
+          className="mt-4 inline-block text-sm text-germe-blue hover:underline"
+        >
+          ← Retour au catalogue
+        </Link>
+      </div>
+    );
+  }
+
+  const toutesLesLecons = formation.modules.flatMap((m) =>
+    m.chapitres.flatMap((c) => c.lecons),
+  );
 
   return (
     <main>
@@ -81,39 +91,45 @@ export default function FormationDetailPage({
             <h2 className="font-display text-sm font-semibold uppercase tracking-wide text-germe-ink/60">
               Sommaire
             </h2>
-            <div className="mt-4 space-y-5">
-              {MODULES_DEMO.map((m) => (
-                <div key={m.id}>
-                  <p className="font-display text-sm font-semibold text-germe-blue">
-                    {m.titre}
-                  </p>
-                  <div className="mt-2 space-y-3 border-l border-germe-ink/10 pl-4">
-                    {m.chapitres.map((c) => (
-                      <div key={c.id}>
-                        <p className="text-sm font-medium text-germe-ink">
-                          {c.titre}
-                        </p>
-                        <ul className="mt-1 space-y-1">
-                          {c.lecons.map((l) => (
-                            <li key={l.id}>
-                              <a
-                                href={`#lecon-${l.id}`}
-                                className="flex items-center justify-between gap-2 text-sm text-germe-ink/65 hover:text-germe-green"
-                              >
-                                <span>{l.titre}</span>
-                                <span className="shrink-0 text-xs text-germe-ink/40">
-                                  {l.dureeMin} min
-                                </span>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+            {formation.modules.length === 0 ? (
+              <p className="mt-4 text-sm text-germe-ink/50">
+                Le contenu de cette formation arrive bientôt.
+              </p>
+            ) : (
+              <div className="mt-4 space-y-5">
+                {formation.modules.map((m) => (
+                  <div key={m.id}>
+                    <p className="font-display text-sm font-semibold text-germe-blue">
+                      {m.titre}
+                    </p>
+                    <div className="mt-2 space-y-3 border-l border-germe-ink/10 pl-4">
+                      {m.chapitres.map((c) => (
+                        <div key={c.id}>
+                          <p className="text-sm font-medium text-germe-ink">
+                            {c.titre}
+                          </p>
+                          <ul className="mt-1 space-y-1">
+                            {c.lecons.map((l) => (
+                              <li key={l.id}>
+                                <a
+                                  href={`#lecon-${l.id}`}
+                                  className="flex items-center justify-between gap-2 text-sm text-germe-ink/65 hover:text-germe-green"
+                                >
+                                  <span>{l.titre}</span>
+                                  <span className="shrink-0 text-xs text-germe-ink/40">
+                                    {l.dureeMin} min
+                                  </span>
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             <div className="mt-6 rounded-lg bg-germe-greenLight p-4">
               <p className="text-sm font-medium text-germe-ink">Test final</p>
@@ -126,34 +142,48 @@ export default function FormationDetailPage({
 
         {/* Contenu : vidéo + texte, exercice en fin de leçon */}
         <div className="space-y-8 md:col-span-2">
-          {MODULES_DEMO.flatMap((m) => m.chapitres)
-            .flatMap((c) => c.lecons)
-            .map((l, i) => (
-              <Reveal key={l.id} delay={i * 60}>
-                <article
-                  id={`lecon-${l.id}`}
-                  className="scroll-mt-24 rounded-xl border border-germe-ink/10 bg-white p-6 shadow-sm"
-                >
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-display text-lg font-semibold text-germe-ink">
-                      {l.titre}
-                    </h3>
-                    <span className="text-xs text-germe-ink/50">
-                      {l.dureeMin} min
-                    </span>
-                  </div>
+          {toutesLesLecons.length === 0 && (
+            <p className="rounded-xl border border-germe-ink/10 bg-white p-8 text-center text-sm text-germe-ink/50">
+              Aucune leçon n'a encore été ajoutée à cette formation.
+            </p>
+          )}
 
-                  <div className="mt-4 flex aspect-video w-full items-center justify-center rounded-lg bg-germe-ink/5">
+          {toutesLesLecons.map((l, i) => (
+            <Reveal key={l.id} delay={i * 60}>
+              <article
+                id={`lecon-${l.id}`}
+                className="scroll-mt-24 rounded-xl border border-germe-ink/10 bg-white p-6 shadow-sm"
+              >
+                <div className="flex items-center justify-between">
+                  <h3 className="font-display text-lg font-semibold text-germe-ink">
+                    {l.titre}
+                  </h3>
+                  <span className="text-xs text-germe-ink/50">
+                    {l.dureeMin} min
+                  </span>
+                </div>
+
+                <div className="mt-4 flex aspect-video w-full items-center justify-center rounded-lg bg-germe-ink/5">
+                  {l.videoUrl ? (
+                    <video
+                      src={l.videoUrl}
+                      controls
+                      className="h-full w-full rounded-lg"
+                    />
+                  ) : (
                     <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-xl text-germe-blue shadow">
                       ▶
                     </span>
-                  </div>
+                  )}
+                </div>
 
-                  <p className="mt-4 text-sm leading-relaxed text-germe-ink/70">
-                    Le texte d'accompagnement de la leçon s'affichera ici, sous
-                    la vidéo, tel que rédigé par le formateur.
+                {l.contenuTexte && (
+                  <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-germe-ink/70">
+                    {l.contenuTexte}
                   </p>
+                )}
 
+                {l.exercices.length > 0 && (
                   <div className="mt-6 rounded-lg border border-germe-green/20 bg-germe-greenLight p-4">
                     <p className="text-sm font-medium text-germe-ink">
                       Exercice de fin de leçon
@@ -168,11 +198,11 @@ export default function FormationDetailPage({
                       Faire l'exercice
                     </button>
                   </div>
-                </article>
-              </Reveal>
-            ))}
+                )}
+              </article>
+            </Reveal>
+          ))}
 
-          {/* Espace d'échange formateur-apprenant */}
           <Reveal className="rounded-xl border border-germe-ink/10 bg-white p-6 shadow-sm">
             <h3 className="font-display text-base font-semibold text-germe-ink">
               Échanges avec le formateur
