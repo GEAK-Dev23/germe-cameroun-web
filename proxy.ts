@@ -1,30 +1,34 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { jwtVerify } from "jose";
 
 const NOM_COOKIE = "germe_token";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api";
 
-// Doit être IDENTIQUE au secret utilisé par l'API NestJS (JWT_SECRET).
-// jose tourne sur l'Edge Runtime de Next.js : on vérifie la signature
-// et l'expiration du token nous-mêmes, sans appeler l'API à chaque requête.
-const SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET ?? "change-moi-en-production",
-);
+type Role = "super_admin" | "admin" | "formateur" | "apprenant";
 
-type PayloadToken = {
-  sub: string;
-  email: string;
-  role: "super_admin" | "admin" | "formateur" | "apprenant";
-};
-
-async function lireRole(
-  token: string | undefined,
-): Promise<PayloadToken["role"] | null> {
+// Demande à l'API elle-même qui est l'utilisateur derrière ce cookie,
+// plutôt que de revérifier la signature du JWT ici avec un second secret
+// (JWT_SECRET) dupliqué côté frontend. Cette duplication était la cause
+// d'un bug récurrent et difficile à diagnostiquer : dès que le secret de
+// apps/web/.env.local et celui de apps/api/.env divergeaient (ex : l'un
+// des deux fichiers recréé depuis .env.example sans reporter le vrai
+// secret), une connexion pourtant réussie côté API était rejetée en
+// silence par ce middleware, qui renvoyait alors vers /login sans aucun
+// message d'erreur. Interroger l'API supprime cette classe de bug : il
+// n'existe plus qu'une seule source de vérité (JWT_SECRET dans
+// apps/api/.env), le frontend n'a plus besoin de le connaître.
+async function obtenirRole(token: string | undefined): Promise<Role | null> {
   if (!token) return null;
   try {
-    const { payload } = await jwtVerify(token, SECRET);
-    return (payload as unknown as PayloadToken).role ?? null;
+    const res = await fetch(`${API_URL}/auth/me`, {
+      headers: { Cookie: `${NOM_COOKIE}=${token}` },
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data?.utilisateur?.role ?? null;
   } catch {
-    // Token absent, expiré, ou signature invalide.
+    // API injoignable : on considère prudemment que la session n'est pas
+    // valide plutôt que de laisser passer une requête non vérifiée.
     return null;
   }
 }
@@ -32,10 +36,14 @@ async function lireRole(
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const token = request.cookies.get(NOM_COOKIE)?.value;
-  const role = await lireRole(token);
+  const role = await obtenirRole(token);
 
   const estConnecte = role !== null;
-  const estAdmin = role === "super_admin" || role === "admin";
+  // L'espace admin est ouvert à toute l'équipe pédagogique. Les routes
+  // sensibles (ex : changer le rôle d'un utilisateur) restent en plus
+  // protégées côté API pour le seul super_admin — voir users.controller.ts.
+  const estPersonnelAdmin =
+    role === "super_admin" || role === "admin" || role === "formateur";
 
   if (
     !estConnecte &&
@@ -46,7 +54,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (estConnecte && path.startsWith("/admin") && !estAdmin) {
+  if (estConnecte && path.startsWith("/admin") && !estPersonnelAdmin) {
     return NextResponse.redirect(new URL("/plateforme", request.url));
   }
 

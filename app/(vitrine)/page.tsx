@@ -5,6 +5,7 @@ import Vision from "@/components/vitrine/Vision";
 import Offres from "@/components/vitrine/Offres";
 import Produits from "@/components/vitrine/Produits";
 import Temoignages from "@/components/vitrine/Temoignages";
+import OffresPartenaires from "@/components/vitrine/OffresPartenaires";
 import Stats from "@/components/vitrine/Stats";
 import CtaBanner from "@/components/vitrine/CtaBanner";
 import Blog from "@/components/vitrine/Blog";
@@ -20,6 +21,7 @@ export default function VitrinePage() {
       <Offres />
       <Produits />
       <Temoignages />
+      <OffresPartenaires />
       <Stats />
       <CtaBanner />
       <Blog />

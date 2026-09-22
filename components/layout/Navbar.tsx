@@ -19,7 +19,8 @@ export default function Navbar() {
       <div className="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-6">
         <a
           href="#accueil"
-          className="font-display text-lg font-semibold text-germe-blue md:text-xl"
+          aria-label="GERME Cameroun — accueil"
+          className="shrink-0 font-display text-lg font-semibold text-germe-blue"
         >
           GERME <span className="text-germe-green">Cameroun</span>
         </a>

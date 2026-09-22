@@ -4,6 +4,7 @@ import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import AuthShell from "@/components/auth/AuthShell";
+import ChampMotDePasse from "@/components/auth/ChampMotDePasse";
 import { authApi, ApiError } from "@/lib/api";
 
 function FormulaireLogin() {
@@ -50,19 +51,12 @@ function FormulaireLogin() {
           className="mt-1 w-full rounded-lg border border-germe-ink/20 bg-white px-4 py-2.5 transition focus:border-germe-blue focus:outline-none focus:ring-2 focus:ring-germe-blue/20"
         />
       </div>
-      <div>
-        <label className="text-sm text-germe-ink/70" htmlFor="mot-de-passe">
-          Mot de passe
-        </label>
-        <input
-          id="mot-de-passe"
-          type="password"
-          required
-          value={motDePasse}
-          onChange={(e) => setMotDePasse(e.target.value)}
-          className="mt-1 w-full rounded-lg border border-germe-ink/20 bg-white px-4 py-2.5 transition focus:border-germe-blue focus:outline-none focus:ring-2 focus:ring-germe-blue/20"
-        />
-      </div>
+      <ChampMotDePasse
+        id="mot-de-passe"
+        value={motDePasse}
+        onChange={setMotDePasse}
+        autoComplete="current-password"
+      />
 
       {erreur && <p className="text-sm text-red-600">{erreur}</p>}
 

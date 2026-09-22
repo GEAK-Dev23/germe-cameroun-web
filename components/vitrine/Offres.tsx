@@ -1,36 +1,29 @@
 import Reveal from "@/components/vitrine/Reveal";
 
-const OFFRES = [
+const AXES = [
   {
-    icone: "🌾",
-    titre: "Cultures vivrières",
-    texte: "Techniques de culture adaptées aux sols et climats du Cameroun.",
-  },
-  {
-    icone: "🍊",
-    titre: "Fruits & vergers",
+    icone: "🏛️",
+    titre: "AXE 1 : Ingénierie Conseil & Structuration Organisationnelle",
     texte:
-      "Plantation, entretien et récolte des principales filières fruitières.",
+      "Accompagnement stratégique, études, planification et renforcement des capacités des organisations publiques, privées et communautaires.",
   },
   {
-    icone: "🥕",
-    titre: "Maraîchage",
-    texte: "Production maraîchère intensive, y compris hors-sol.",
+    icone: "💼",
+    titre: "AXE 2 : Entrepreneuriat & Développement Économique Local",
+    texte:
+      "Formation entrepreneuriale, insertion économique, développement de chaînes de valeur et création d'emplois durables pour les jeunes et les femmes.",
   },
   {
-    icone: "🚜",
-    titre: "Machinisme agricole",
-    texte: "Utilisation et entretien des équipements agricoles modernes.",
+    icone: "🌿",
+    titre: "AXE 3 : Résilience Climatique & Développement Durable",
+    texte:
+      "Solutions d'adaptation au changement climatique, entrepreneuriat vert et promotion de modèles économiques respectueux de l'environnement.",
   },
   {
-    icone: "📊",
-    titre: "Plans d'exploitation",
-    texte: "Structurer, budgétiser et financer son projet agricole.",
-  },
-  {
-    icone: "🐐",
-    titre: "Élevage",
-    texte: "Conduite d'élevage, alimentation et santé animale.",
+    icone: "🤝",
+    titre: "AXE 4 : Inclusion Sociale, Genre & Action Humanitaire",
+    texte:
+      "Autonomisation des femmes et des populations vulnérables, promotion de l'égalité de genre et interventions humanitaires de proximité.",
   },
 ];
 
@@ -44,7 +37,7 @@ export default function Offres() {
           </p>
           <div className="relative inline-block">
             <h2 className="mt-2 font-display text-2xl font-semibold text-germe-ink md:text-3xl">
-              Ce que GERME Cameroun propose
+              Nos 4 axes d'intervention
             </h2>
             <span
               aria-hidden="true"
@@ -57,14 +50,18 @@ export default function Offres() {
                   "linear-gradient(to bottom, rgba(0,0,0,0.8), transparent)",
               }}
             >
-              Ce que GERME Cameroun propose
+              Nos 4 axes d'intervention
             </span>
           </div>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-germe-ink/70">
+            Nos interventions s'articulent autour de 4 axes complémentaires,
+            portés par la synergie de nos entités :
+          </p>
         </Reveal>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {OFFRES.map((o, i) => (
-            <Reveal key={o.titre} delay={(i % 2) * 100}>
+          {AXES.map((a, i) => (
+            <Reveal key={a.titre} delay={(i % 2) * 100}>
               <div className="flex h-full items-start gap-4 rounded-xl border border-germe-ink/10 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:scale-105 hover:shadow-lg">
                 <span
                   className={
@@ -74,13 +71,13 @@ export default function Offres() {
                   }
                   aria-hidden="true"
                 >
-                  {o.icone}
+                  {a.icone}
                 </span>
                 <div>
                   <h3 className="font-display text-base font-semibold text-germe-ink">
-                    {o.titre}
+                    {a.titre}
                   </h3>
-                  <p className="mt-1 text-sm text-germe-ink/70">{o.texte}</p>
+                  <p className="mt-1 text-sm text-germe-ink/70">{a.texte}</p>
                 </div>
               </div>
             </Reveal>

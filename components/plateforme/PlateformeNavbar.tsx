@@ -1,13 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { authApi, type Utilisateur } from "@/lib/api";
+import NotificationsBell from "@/components/layout/NotificationsBell";
 
 const LIENS = [
   { href: "/plateforme", label: "Catalogue" },
   { href: "/plateforme/mes-formations", label: "Mes formations" },
+  { href: "/plateforme/ressources", label: "Ressources" },
+  { href: "/plateforme/outils/simulateur-rentabilite", label: "Outils" },
+  { href: "/plateforme/forum", label: "Forum" },
+  { href: "/plateforme/webinaires", label: "Webinaires" },
+  { href: "/plateforme/reseau", label: "Réseau" },
+  { href: "/plateforme/messages", label: "Messages" },
   { href: "/plateforme/certificats", label: "Certificats" },
 ];
 
@@ -38,17 +46,23 @@ export default function PlateformeNavbar() {
   }
 
   const estAdmin =
-    utilisateur?.role === "super_admin" || utilisateur?.role === "admin";
+    utilisateur?.role === "super_admin" ||
+    utilisateur?.role === "admin" ||
+    utilisateur?.role === "formateur";
   const initiale = utilisateur?.fullName?.charAt(0).toUpperCase() ?? "?";
 
   return (
     <header className="sticky top-0 z-50 border-b border-germe-ink/10 bg-white/95 backdrop-blur">
       <div className="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-6">
-        <Link
-          href="/plateforme"
-          className="font-display text-lg font-semibold text-germe-blue"
-        >
-          GERME <span className="text-germe-green">Cameroun</span>
+        <Link href="/plateforme" aria-label="GERME Cameroun" className="shrink-0">
+          <Image
+            src="/images/logo/logo-germe.jpeg"
+            alt="GERME Cameroun"
+            width={56}
+            height={56}
+            className="h-11 w-11 rounded-lg object-contain"
+            priority
+          />
         </Link>
 
         <nav className="hidden gap-8 text-sm font-medium text-germe-ink/80 lg:flex">
@@ -63,7 +77,8 @@ export default function PlateformeNavbar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
+          <NotificationsBell />
           <div className="relative">
             <button
               type="button"

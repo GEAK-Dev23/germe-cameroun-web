@@ -64,6 +64,11 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        ripple: {
+          "0%": { transform: "scale(0.75)", opacity: "0.55" },
+          "80%": { opacity: "0" },
+          "100%": { transform: "scale(1.9)", opacity: "0" },
+        },
       },
       animation: {
         "spin-slow": "spin-slow 9s linear infinite",
@@ -76,6 +81,7 @@ const config: Config = {
         "hero-zoom": "hero-zoom 20s ease-out forwards",
         "menu-pop": "menu-pop 0.18s ease-out forwards",
         "modal-fade": "modal-fade 0.2s ease-out forwards",
+        ripple: "ripple 3s cubic-bezier(0.25,0.6,0.4,1) infinite",
       },
     },
   },

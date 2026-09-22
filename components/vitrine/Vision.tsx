@@ -9,20 +9,14 @@ export default function Vision() {
           <p className="text-xs font-semibold uppercase tracking-wide text-germe-green">
             Notre vision
           </p>
-          <h2 className="mt-2 font-display text-2xl font-semibold text-germe-ink md:text-3xl">
-            Des exploitations modernes et rentables
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed text-germe-ink/70 md:text-base">
-            Nous voulons faire de chaque apprenant un chef d'exploitation
-            capable de produire davantage, de mieux vendre, et de faire grandir
-            durablement son activité agricole ou d'élevage.
-          </p>
-          <a
-            href="#services"
-            className="mt-6 inline-block rounded-full bg-gradient-to-r from-germe-blue to-germe-green px-6 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-lg"
-          >
-            Voir nos domaines
-          </a>
+          <blockquote className="mt-4 border-l-4 border-germe-green pl-5">
+            <p className="font-display text-xl italic leading-relaxed text-germe-ink md:text-2xl">
+              « Être une référence africaine, reconnue pour la qualité de ses
+              interventions, l'impact durable de ses solutions et sa capacité
+              à transformer les potentiels locaux en réussites qui résistent
+              au temps, au plus près des réalités urbaines et rurales. »
+            </p>
+          </blockquote>
         </Reveal>
 
         <Reveal delay={120} className="relative shadow-lg">

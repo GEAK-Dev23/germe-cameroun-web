@@ -40,25 +40,59 @@ export default function Inspiration() {
             Bienvenue chez GERME Cameroun
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-germe-ink/70 md:text-base">
-            ONG, Association, SARL et Centre de Formation Professionnelle :
-            GERME Cameroun rassemble quatre entités complémentaires au service
-            d'une même ambition — accompagner les agriculteurs et éleveurs
-            camerounais vers des exploitations rentables et durables.
+            GERME CAMEROUN est une structure d'appui à l'entrepreneuriat et au
+            développement économique local, spécialisée dans la formation,
+            l'accompagnement/coaching, l'insertion socioprofessionnelle.
           </p>
-          <ul className="mt-6 space-y-3">
+
+          <p className="mt-6 text-sm font-medium text-germe-ink">
+            Chez GERME Cameroun, nos actions sont guidées par 6 valeurs
+            fondamentales qui animent toutes nos entités :
+          </p>
+
+          <ul className="mt-4 space-y-4">
             {[
-              "Des formateurs de terrain, formés aux réalités locales",
-              "Un accompagnement qui va de la leçon au plan d'affaires",
-              "Une gouvernance commune, quatre missions complémentaires",
-            ].map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 text-sm text-germe-ink/80"
-              >
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-germe-green/15 text-germe-green">
-                  ✓
+              {
+                titre: "Professionnalisme",
+                texte:
+                  "Rigueur, qualité et respect des engagements, de la conception à la mise en œuvre sur le terrain.",
+              },
+              {
+                titre: "Intégrité",
+                texte:
+                  "Transparence, éthique et redevabilité envers nos bénéficiaires, nos clients et nos partenaires institutionnels.",
+              },
+              {
+                titre: "Inclusion",
+                texte:
+                  "Nous révélons et accompagnons le potentiel de chaque personne, avec une attention particulière pour les femmes, les jeunes et les populations vulnérables.",
+              },
+              {
+                titre: "Durabilité",
+                texte:
+                  "Nous bâtissons des solutions résilientes qui allient performance économique, adaptation climatique et respect de l'environnement.",
+              },
+              {
+                titre: "Innovation de proximité",
+                texte:
+                  "Des solutions pratiques et créatives, co-construites et adaptées aux réalités locales.",
+              },
+              {
+                titre: "Synergie des 4 entités",
+                texte:
+                  "Une vision commune, quatre expertises complémentaires au service d'une seule ambition : transformer durablement les potentiels locaux en réussites. Nous réussissons ensemble.",
+              },
+            ].map((valeur, i) => (
+              <li key={valeur.titre} className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-germe-green/15 text-xs font-semibold text-germe-green">
+                  {i + 1}
                 </span>
-                {item}
+                <p className="text-sm text-germe-ink/80">
+                  <span className="font-semibold text-germe-ink">
+                    {valeur.titre}
+                  </span>{" "}
+                  : {valeur.texte}
+                </p>
               </li>
             ))}
           </ul>

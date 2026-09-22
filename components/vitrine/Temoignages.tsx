@@ -1,29 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Reveal from "@/components/vitrine/Reveal";
 import MirrorImage from "@/components/vitrine/MirrorImage";
+import { vitrineApi, type Temoignage } from "@/lib/api";
 
-const AVIS = [
-  {
-    nom: "Jonathan Ateba",
-    lieu: "Bafoussam",
-    texte:
-      "La formation en maraîchage m'a permis de doubler ma récolte en une saison. Les exercices pratiques font vraiment la différence.",
-    photo: "/images/temoignages/jonathan.jpg",
-  },
-  {
-    nom: "Sandrine Mballa",
-    lieu: "Yaoundé",
-    texte:
-      "Grâce au plan d'affaires généré après ma certification, j'ai pu obtenir un financement pour agrandir mon élevage de volailles.",
-    photo: "/images/temoignages/sandrine.jpg",
-  },
-];
+function Initiales({ nom }: { nom: string }) {
+  const initiales = nom
+    .split(" ")
+    .map((mot) => mot[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+  return (
+    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-germe-green/15 font-display text-lg font-semibold text-germe-green">
+      {initiales}
+    </div>
+  );
+}
 
 export default function Temoignages() {
+  const [avisListe, setAvisListe] = useState<Temoignage[]>([]);
   const [index, setIndex] = useState(0);
-  const avis = AVIS[index];
+
+  useEffect(() => {
+    vitrineApi
+      .temoignages()
+      .then(setAvisListe)
+      .catch(() => {});
+  }, []);
+
+  if (avisListe.length === 0) return null;
+
+  const avis = avisListe[index];
 
   return (
     <section className="bg-gradient-to-br from-germe-blueLight to-germe-greenLight">
@@ -43,17 +52,19 @@ export default function Temoignages() {
         >
           <div key={index} className="animate-fade-up">
             <div className="flex items-center gap-4">
-              <MirrorImage
-                src={avis.photo}
-                alt={avis.nom}
-                className="h-14 w-14 rounded-full"
-                intensite={0.18}
-              />
+              {avis.photoUrl ? (
+                <MirrorImage
+                  src={avis.photoUrl}
+                  alt={avis.nom}
+                  className="h-14 w-14 rounded-full"
+                  intensite={0.18}
+                />
+              ) : (
+                <Initiales nom={avis.nom} />
+              )}
               <div>
-                <p className="font-display font-semibold text-germe-ink">
-                  {avis.nom}
-                </p>
-                <p className="text-xs text-germe-ink/60">{avis.lieu}</p>
+                <p className="font-display font-semibold text-germe-ink">{avis.nom}</p>
+                <p className="text-xs text-germe-ink/60">{avis.fonction}</p>
               </div>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-germe-ink/70">
@@ -62,35 +73,37 @@ export default function Temoignages() {
           </div>
         </Reveal>
 
-        <div className="mt-6 flex items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => setIndex((i) => (i - 1 + AVIS.length) % AVIS.length)}
-            aria-label="Témoignage précédent"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-germe-ink/20 bg-white text-germe-ink transition hover:-translate-x-1 hover:border-germe-green hover:text-germe-green"
-          >
-            ←
-          </button>
-          <div className="flex gap-2">
-            {AVIS.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                aria-label={`Voir le témoignage ${i + 1}`}
-                onClick={() => setIndex(i)}
-                className={`h-2 w-2 rounded-full transition ${i === index ? "bg-germe-green" : "bg-germe-ink/20"}`}
-              />
-            ))}
+        {avisListe.length > 1 && (
+          <div className="mt-6 flex items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => setIndex((i) => (i - 1 + avisListe.length) % avisListe.length)}
+              aria-label="Témoignage précédent"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-germe-ink/20 bg-white text-germe-ink transition hover:-translate-x-1 hover:border-germe-green hover:text-germe-green"
+            >
+              ←
+            </button>
+            <div className="flex gap-2">
+              {avisListe.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Voir le témoignage ${i + 1}`}
+                  onClick={() => setIndex(i)}
+                  className={`h-2 w-2 rounded-full transition ${i === index ? "bg-germe-green" : "bg-germe-ink/20"}`}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setIndex((i) => (i + 1) % avisListe.length)}
+              aria-label="Témoignage suivant"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-germe-ink/20 bg-white text-germe-ink transition hover:translate-x-1 hover:border-germe-green hover:text-germe-green"
+            >
+              →
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={() => setIndex((i) => (i + 1) % AVIS.length)}
-            aria-label="Témoignage suivant"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-germe-ink/20 bg-white text-germe-ink transition hover:translate-x-1 hover:border-germe-green hover:text-germe-green"
-          >
-            →
-          </button>
-        </div>
+        )}
       </div>
     </section>
   );

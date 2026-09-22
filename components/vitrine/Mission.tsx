@@ -1,11 +1,36 @@
 import Reveal from "@/components/vitrine/Reveal";
 
 const MISSIONS = [
-  { icone: "🤝", titre: "Travail collaboratif", accent: true },
-  { icone: "🌱", titre: "Agriculture durable" },
-  { icone: "🐄", titre: "Élevage responsable" },
-  { icone: "🚜", titre: "Équipement moderne" },
-  { icone: "🎓", titre: "Formation certifiante" },
+  {
+    icone: "🧭",
+    titre: "Consulting et Appui Stratégique",
+    texte:
+      "Réaliser des diagnostics organisationnels, des études de faisabilité, des plans stratégiques et des plans d'affaires pour les entreprises, ONG et collectivités.",
+  },
+  {
+    icone: "🎓",
+    titre: "Formation et Renforcement de Capacités",
+    texte:
+      "Déployer le programme GERME et d'autres approches innovantes pour doter les entrepreneurs et les organisations des compétences en gestion, finance, marketing et leadership.",
+  },
+  {
+    icone: "🚀",
+    titre: "Entrepreneuriat et Insertion Socio-économique",
+    texte:
+      "Accompagner la création, la formalisation et la croissance des micro, petites et moyennes entreprises, avec un focus sur les jeunes et les femmes.",
+  },
+  {
+    icone: "🌍",
+    titre: "Environnement, Climat et Genre",
+    texte:
+      "Intégrer systématiquement les dimensions de durabilité environnementale, de résilience climatique et d'équité de genre dans tous nos projets et conseils.",
+  },
+  {
+    icone: "📈",
+    titre: "Suivi-Évaluation et Capitalisation",
+    texte:
+      "Assurer la qualité, la redevabilité et la mesure d'impact de nos interventions pour garantir des résultats durables.",
+  },
 ];
 
 export default function Mission() {
@@ -18,7 +43,7 @@ export default function Mission() {
           </p>
           <div className="relative inline-block">
             <h2 className="mt-2 font-display text-2xl font-semibold text-white md:text-3xl">
-              Agriculture, élevage et formation
+              Nos missions
             </h2>
             <span
               aria-hidden="true"
@@ -31,37 +56,30 @@ export default function Mission() {
                   "linear-gradient(to bottom, rgba(0,0,0,0.8), transparent)",
               }}
             >
-              Agriculture, élevage et formation
+              Nos missions
             </span>
           </div>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-white/80">
-            Quatre entités, une même exigence : transmettre des pratiques
-            solides et accompagner chaque projet jusqu'à sa réussite.
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-white/80">
+            GERME Cameroun a pour mission de fournir des services intégrés de
+            consulting, de formation et d'accompagnement pour promouvoir
+            l'entrepreneuriat durable et la performance organisationnelle.
+          </p>
+          <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-germe-wheat">
+            Nos missions spécifiques
           </p>
         </Reveal>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {MISSIONS.map((m, i) => (
             <Reveal key={m.titre} delay={i * 90}>
-              <div
-                className={
-                  m.accent
-                    ? "flex h-full flex-col items-center gap-3 rounded-xl bg-white p-6 shadow-md transition hover:-translate-y-1 hover:shadow-lg"
-                    : "flex h-full flex-col items-center gap-3 rounded-xl border border-white/25 bg-white/15 p-6 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/25"
-                }
-              >
-                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-germe-wheat text-2xl">
+              <div className="flex h-full flex-col items-start gap-3 rounded-xl border border-white/25 bg-white/15 p-6 text-left backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/25">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-germe-wheat text-2xl">
                   {m.icone}
                 </span>
-                <p
-                  className={
-                    m.accent
-                      ? "text-sm font-semibold text-germe-green"
-                      : "text-sm font-semibold text-white"
-                  }
-                >
-                  {m.titre}
+                <p className="text-sm font-semibold text-white">
+                  {i + 1}. {m.titre}
                 </p>
+                <p className="text-sm text-white/80">{m.texte}</p>
               </div>
             </Reveal>
           ))}

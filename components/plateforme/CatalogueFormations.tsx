@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Reveal from "@/components/vitrine/Reveal";
 import MirrorImage from "@/components/vitrine/MirrorImage";
+import EmptyState from "@/components/ui/EmptyState";
 import { formationsApi, ApiError, type Formation } from "@/lib/api";
 
 const IMAGE_PAR_DEFAUT = "/images/produits/maraichage.jpg";
@@ -50,9 +51,11 @@ export default function CatalogueFormations() {
 
   if (formations.length === 0) {
     return (
-      <p className="rounded-xl border border-germe-ink/10 bg-white p-8 text-center text-sm text-germe-ink/60">
-        Aucune formation publiée pour le moment — revenez bientôt.
-      </p>
+      <EmptyState
+        icone="🎓"
+        titre="Aucune formation publiée pour le moment"
+        message="Revenez bientôt pour découvrir nos prochaines formations."
+      />
     );
   }
 

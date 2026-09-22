@@ -1,28 +1,32 @@
-import Link from "next/link";
 import Reveal from "@/components/vitrine/Reveal";
-import MirrorImage from "@/components/vitrine/MirrorImage";
 
-const PHOTOS = [
+const POLES = [
   {
-    src: "/images/produits/maraichage.jpg",
-    alt: "Récolte de légumes frais",
-    className: "col-span-2 row-span-2",
+    titre: "PÔLE 1 : Agriculture Durable & Économie Verte",
+    items: [
+      "Agrobusiness et entrepreneuriat agricole",
+      "Élevage, pisciculture et aquaculture",
+      "Transformation agroalimentaire",
+      "Adaptation climatique et énergies renouvelables",
+    ],
   },
   {
-    src: "/images/produits/cacao.jpg",
-    alt: "Cabosses de cacao",
-    className: "",
+    titre: "PÔLE 2 : Entrepreneuriat, Gestion & Innovation",
+    items: [
+      "Création et gestion d'entreprise (GERME / CEFE)",
+      "Leadership, management associatif et coopératif",
+      "Éducation financière et accès au financement",
+      "Numérique, digitalisation des activités et e-commerce",
+    ],
   },
   {
-    src: "/images/produits/manioc.jpg",
-    alt: "Récolte de manioc",
-    className: "",
-  },
-  { src: "/images/produits/mais.jpg", alt: "Champ de maïs", className: "" },
-  {
-    src: "/images/produits/betail.jpg",
-    alt: "Bétail au pâturage",
-    className: "",
+    titre: "PÔLE 3 : Métiers Porteurs & Inclusion Sociale",
+    items: [
+      "Mode, stylisme et artisanat d'art",
+      "Métiers de la beauté, de l'esthétique et du bien-être",
+      "Techniques de communication, marketing local",
+      "Intervention sociale, genre et développement communautaire",
+    ],
   },
 ];
 
@@ -30,42 +34,40 @@ export default function Produits() {
   return (
     <section className="bg-germe-greenDark">
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-6">
-        <div className="grid gap-10 md:grid-cols-3 md:items-center">
-          <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-wide text-germe-wheat">
-              Nos filières
-            </p>
-            <h2 className="mt-2 font-display text-2xl font-semibold text-white md:text-3xl">
-              Des filières concrètes, ancrées dans le terrain
-            </h2>
-            <p className="mt-3 text-sm text-white/75">
-              Maraîchage, cultures vivrières, cacao et élevage : nos formations
-              couvrent les filières qui font vivre les exploitations
-              camerounaises.
-            </p>
-            <Link
-              href="/plateforme"
-              className="mt-6 inline-block rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-germe-greenDark transition hover:-translate-y-0.5 hover:bg-germe-wheat hover:shadow-lg"
-            >
-              Commencer
-            </Link>
-          </Reveal>
+        <Reveal className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-wide text-germe-wheat">
+            Nos filières
+          </p>
+          <h2 className="mt-2 font-display text-2xl font-semibold text-white md:text-3xl">
+            Nos filières de formation
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-white/75">
+            Nos parcours de formation professionnalisante sont structurés en
+            3 pôles :
+          </p>
+        </Reveal>
 
-          <Reveal
-            delay={120}
-            className="grid grid-cols-2 grid-rows-2 gap-3 md:col-span-2"
-          >
-            {PHOTOS.map((p) => (
-              <MirrorImage
-                key={p.src}
-                src={p.src}
-                alt={p.alt}
-                className={`rounded-xl ${p.className}`}
-                imgClassName="min-h-[110px] transition duration-700 hover:scale-105"
-                intensite={0.22}
-              />
-            ))}
-          </Reveal>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {POLES.map((pole, i) => (
+            <Reveal key={pole.titre} delay={i * 100}>
+              <div className="flex h-full flex-col rounded-xl border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
+                <h3 className="font-display text-base font-semibold text-white">
+                  {pole.titre}
+                </h3>
+                <ul className="mt-4 space-y-2.5">
+                  {pole.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-sm text-white/80"
+                    >
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-germe-wheat" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
