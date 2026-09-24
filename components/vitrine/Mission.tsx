@@ -64,7 +64,7 @@ export default function Mission() {
             consulting, de formation et d'accompagnement pour promouvoir
             l'entrepreneuriat durable et la performance organisationnelle.
           </p>
-          <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-germe-wheat">
+          <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-germe-wheat">
             Nos missions spécifiques
           </p>
         </Reveal>

@@ -47,8 +47,7 @@ export default function Contact() {
             Une question sur nos formations ?
           </h2>
           <p className="mt-3 max-w-md text-sm text-germe-ink/70">
-            Écrivez-nous : notre équipe pédagogique vous répond sous 48h, que
-            vous soyez déjà agriculteur ou en train de démarrer.
+            Écrivez-nous : notre équipe pédagogique vous répond sous 48h.
           </p>
 
           <div className="mt-6 space-y-2.5 text-sm text-germe-ink">

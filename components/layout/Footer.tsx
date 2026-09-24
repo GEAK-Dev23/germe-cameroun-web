@@ -47,8 +47,8 @@ export default function Footer() {
             <p className="font-display text-lg font-semibold">GERME Cameroun</p>
           </div>
           <p className="mt-3 max-w-xs text-sm text-white/75">
-            Centre de Formation Professionnelle au service de l'agriculture
-            et de l'élevage au Cameroun.
+            GERME Cameroun est une structure de référence en promotion de
+            l'entrepreneuriat et du développement économique local.
           </p>
           <div className="mt-5 flex gap-3">
             {RESEAUX.map((r) => (

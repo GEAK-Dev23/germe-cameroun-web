@@ -18,7 +18,7 @@ const CHIFFRES = [
     label: "entreprises et coopératives accompagnées",
   },
   { valeur: 12, prefixe: "", suffixe: "", label: "régions d'intervention couvertes" },
-  { valeur: 150, prefixe: "", suffixe: "", label: "partenariats locaux mobilisés" },
+  { valeur: 10, prefixe: "+", suffixe: "", label: "partenariats locaux mobilisés" },
 ];
 
 const DUREE_MS = 1400;

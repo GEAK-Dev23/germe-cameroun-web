@@ -9,7 +9,7 @@ export default function CtaBanner() {
       <Reveal className="mx-auto max-w-2xl px-5 md:px-6">
         <div className="relative inline-block">
           <h2 className="font-display text-2xl font-semibold text-white md:text-3xl">
-            Offrez à votre exploitation les compétences qui la feront grandir
+            Offrez vous les compétences qui vous feront grandir
           </h2>
           <span
             aria-hidden="true"
@@ -22,7 +22,7 @@ export default function CtaBanner() {
                 "linear-gradient(to bottom, rgba(0,0,0,0.8), transparent)",
             }}
           >
-            Offrez à votre exploitation les compétences qui la feront grandir
+            Offrez vous les compétences qui vous feront grandir
           </span>
         </div>
         <p className="mt-3 text-sm text-white/85 md:text-base">

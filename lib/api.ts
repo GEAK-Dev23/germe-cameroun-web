@@ -1,7 +1,11 @@
-// Point d'appel unique vers l'API NestJS. En développement, l'API tourne
-// sur le port 3001 ; en production, définissez NEXT_PUBLIC_API_URL vers
-// votre domaine d'API réel (ex : https://api.germecameroun.org).
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api";
+// Point d'appel unique vers l'API NestJS. Toujours un chemin relatif
+// ("/api"), servi par le même domaine que le frontend grâce au rewrite de
+// next.config.js — c'est ce qui permet au cookie de connexion posé par
+// l'API d'être lu par le middleware (proxy.ts) même quand l'API tourne en
+// réalité sur un autre domaine (Render). Ne pointez jamais cette variable
+// directement vers le domaine de l'API en production : voir
+// API_INTERNAL_URL dans .env.example pour la vraie destination.
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api";
 
 export class ApiError extends Error {
   constructor(

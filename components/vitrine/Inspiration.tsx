@@ -33,12 +33,12 @@ export default function Inspiration() {
 
         {/* Texte */}
         <Reveal delay={120}>
-          <p className="text-xs font-semibold uppercase tracking-wide text-germe-green">
-            Notre inspiration
-          </p>
-          <h2 className="mt-2 font-display text-2xl font-semibold text-germe-ink md:text-3xl">
+          <h2 className="font-display text-2xl font-semibold text-germe-ink md:text-3xl">
             Bienvenue chez GERME Cameroun
           </h2>
+          <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-germe-green">
+            Notre inspiration
+          </p>
           <p className="mt-4 text-sm leading-relaxed text-germe-ink/70 md:text-base">
             GERME CAMEROUN est une structure d'appui à l'entrepreneuriat et au
             développement économique local, spécialisée dans la formation,

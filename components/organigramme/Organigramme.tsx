@@ -13,7 +13,7 @@ const SERVICES: Item[] = [
 
 const DEPARTEMENTS: Item[] = [
   { titre: "Département Formation et Renforcement de Capacités" },
-  { titre: "Département Entrepreneuriat et Accompagnement" },
+  { titre: "Département Entrepreneuriat et Accompagnement/Coaching d'Entreprises" },
   { titre: "Département Planification et Projets" },
   { titre: "Département Suivi-Évaluation, Redevabilité et Contrôle Qualité" },
   { titre: "Département Environnement, Climat et Genre" },

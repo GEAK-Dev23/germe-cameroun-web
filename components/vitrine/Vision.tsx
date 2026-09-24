@@ -11,10 +11,10 @@ export default function Vision() {
           </p>
           <blockquote className="mt-4 border-l-4 border-germe-green pl-5">
             <p className="font-display text-xl italic leading-relaxed text-germe-ink md:text-2xl">
-              « Être une référence africaine, reconnue pour la qualité de ses
-              interventions, l'impact durable de ses solutions et sa capacité
+              « Être une référence africaine, reconnue pour la qualité de nos
+              interventions, l'impact durable de nos solutions et la capacité
               à transformer les potentiels locaux en réussites qui résistent
-              au temps, au plus près des réalités urbaines et rurales. »
+              au temps, au plus près des réalités locales. »
             </p>
           </blockquote>
         </Reveal>

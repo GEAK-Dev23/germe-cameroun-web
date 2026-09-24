@@ -1,7 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const NOM_COOKIE = "germe_token";
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api";
+// Appel serveur-à-serveur direct vers l'API (jamais via le rewrite /api,
+// qui n'existe que pour les requêtes du navigateur) : le cookie est lu ici
+// depuis request.cookies puis renvoyé manuellement en en-tête Cookie, donc
+// aucune histoire de domaine ne se pose pour cet appel-ci.
+const API_URL = process.env.API_INTERNAL_URL ?? "http://localhost:3001/api";
 
 type Role = "super_admin" | "admin" | "formateur" | "apprenant";
 

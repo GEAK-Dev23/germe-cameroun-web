@@ -13,7 +13,7 @@ const POLES = [
   {
     titre: "PÔLE 2 : Entrepreneuriat, Gestion & Innovation",
     items: [
-      "Création et gestion d'entreprise (GERME / CEFE)",
+      "Création et gestion d'entreprise (GERME / UPSHIFT)",
       "Leadership, management associatif et coopératif",
       "Éducation financière et accès au financement",
       "Numérique, digitalisation des activités et e-commerce",
@@ -22,9 +22,9 @@ const POLES = [
   {
     titre: "PÔLE 3 : Métiers Porteurs & Inclusion Sociale",
     items: [
-      "Mode, stylisme et artisanat d'art",
-      "Métiers de la beauté, de l'esthétique et du bien-être",
-      "Techniques de communication, marketing local",
+      "Services numériques de proximité, marketing digital et artisanat d'art utilitaire",
+      "Cosmétique naturelle locale et production de soins à base de produits du terroir",
+      "Communication digitale, branding local et techniques de vente",
       "Intervention sociale, genre et développement communautaire",
     ],
   },

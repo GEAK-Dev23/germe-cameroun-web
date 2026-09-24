@@ -26,7 +26,7 @@ export default function Hero() {
         <div className="flex flex-1 justify-center">
           <div className="flex w-full max-w-6xl flex-col justify-center px-5 py-24 md:px-6">
             <span className="animate-fade-up inline-block w-fit rounded-full bg-germe-wheat px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-germe-ink shadow">
-              Agriculture · Élevage · Formation
+              Entrepreneuriat · Consulting · Développement local
             </span>
             <h1
               className="mt-4 max-w-2xl animate-fade-up font-display text-3xl font-semibold leading-[1.1] text-white sm:text-4xl md:text-6xl"
