@@ -42,7 +42,7 @@ export default function Inspiration() {
           <p className="mt-4 text-sm leading-relaxed text-germe-ink/70 md:text-base">
             GERME CAMEROUN est une structure d'appui à l'entrepreneuriat et au
             développement économique local, spécialisée dans la formation,
-            l'accompagnement/coaching, l'insertion socioprofessionnelle.
+            l'accompagnement/coaching, l'insertion Socio-économique.
           </p>
 
           <p className="mt-6 text-sm font-medium text-germe-ink">

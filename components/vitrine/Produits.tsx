@@ -13,7 +13,7 @@ const POLES = [
   {
     titre: "PÔLE 2 : Entrepreneuriat, Gestion & Innovation",
     items: [
-      "Création et gestion d'entreprise (GERME / UPSHIFT)",
+      "Design thinking, création et gestion d'entreprise (GERME / UPSHIFT)",
       "Leadership, management associatif et coopératif",
       "Éducation financière et accès au financement",
       "Numérique, digitalisation des activités et e-commerce",
@@ -42,8 +42,8 @@ export default function Produits() {
             Nos filières de formation
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-white/75">
-            Nos parcours de formation professionnalisante sont structurés en
-            3 pôles :
+            Nos parcours de formation professionnalisante sont structurés en 3
+            pôles :
           </p>
         </Reveal>
 

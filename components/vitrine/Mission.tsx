@@ -42,9 +42,7 @@ export default function Mission() {
             Notre mission
           </p>
           <div className="relative inline-block">
-            <h2 className="mt-2 font-display text-2xl font-semibold text-white md:text-3xl">
-              Nos missions
-            </h2>
+            <h2 className="mt-2 font-display text-2xl font-semibold text-white md:text-3xl"></h2>
             <span
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-0 top-full select-none whitespace-nowrap font-display text-2xl font-semibold text-white [transform:scaleY(-1)] md:text-3xl"
