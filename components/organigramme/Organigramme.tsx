@@ -5,6 +5,7 @@ type Item = { titre: string };
 const CONSEIL_ADMINISTRATION: Item[] = [
   { titre: "Président du Conseil d'Administration" },
   { titre: "Secrétaire Général" },
+  { titre: "Secrétaire Général Adjoint" },
   { titre: "Trésorière" },
   { titre: "Commissaire aux Comptes" },
 ];
