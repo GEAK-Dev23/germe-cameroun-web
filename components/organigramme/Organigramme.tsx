@@ -2,6 +2,13 @@ import Reveal from "@/components/vitrine/Reveal";
 
 type Item = { titre: string };
 
+const CONSEIL_ADMINISTRATION: Item[] = [
+  { titre: "Président du Conseil d'Administration" },
+  { titre: "Secrétaire Général" },
+  { titre: "Trésorière" },
+  { titre: "Commissaire aux Comptes" },
+];
+
 const SERVICES: Item[] = [
   { titre: "Service Administratif, Financier et Audit" },
   { titre: "Service Ressources Humaines" },
@@ -52,6 +59,12 @@ export default function Organigramme() {
           <div className="h-6 w-px bg-germe-ink/30" />
           <div className="w-full max-w-sm rounded-lg bg-germe-green px-5 py-3 text-center text-white shadow">
             <p className="text-sm font-semibold">CONSEIL D'ADMINISTRATION</p>
+          </div>
+          {/* Postes clés du Conseil d'Administration */}
+          <div className="mt-2 grid w-full max-w-sm grid-cols-1 gap-2 rounded-xl bg-germe-greenLight/60 p-3 sm:grid-cols-2">
+            {CONSEIL_ADMINISTRATION.map((c, i) => (
+              <Puce key={c.titre} numero={i + 1} titre={c.titre} />
+            ))}
           </div>
           <div className="h-6 w-px bg-germe-ink/30" />
           <div className="w-full max-w-sm rounded-lg bg-germe-blue px-5 py-3 text-center text-white shadow">
