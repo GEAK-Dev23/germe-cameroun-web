@@ -45,7 +45,7 @@ export default function AuthShell({
         {/* "Agriculture · Élevage · Formation" — centré horizontalement, en haut */}
         <div className="relative flex justify-center">
           <span className="inline-block rounded-full bg-germe-wheat px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-germe-ink shadow sm:text-xs">
-            Agriculture · Élevage · Formation
+            Entrepreneuriat · Consulting · Développement local
           </span>
         </div>
 
@@ -73,11 +73,12 @@ export default function AuthShell({
           </Link>
 
           <h1 className="mt-12 max-w-xs font-display text-2xl font-semibold leading-[1.2] text-white sm:max-w-sm sm:text-3xl">
-            Cultiver un métier, récolter une entreprise.
+            Trouver la meilleure idée, développer une entreprise viable et
+            durable.
           </h1>
           <p className="mt-3 max-w-xs text-sm text-white/80 sm:max-w-sm">
-            Rejoignez les apprenants qui transforment leur savoir-faire
-            agricole en exploitation rentable.
+            GERME CAMEROUN, ensemble faisons germer les talents du secteur
+            agrosylvopastoral et halieutique pour un avenir durable.
           </p>
         </div>
 

@@ -6,7 +6,7 @@ const CONSEIL_ADMINISTRATION: Item[] = [
   { titre: "Président du Conseil d'Administration" },
   { titre: "Secrétaire Général" },
   { titre: "Secrétaire Général Adjoint" },
-  { titre: "Trésorière" },
+  { titre: "Trésorier" },
   { titre: "Commissaire aux Comptes" },
 ];
 
@@ -21,7 +21,10 @@ const SERVICES: Item[] = [
 
 const DEPARTEMENTS: Item[] = [
   { titre: "Département Formation et Renforcement de Capacités" },
-  { titre: "Département Entrepreneuriat et Accompagnement/Coaching d'Entreprises" },
+  {
+    titre:
+      "Département Entrepreneuriat et Accompagnement/Coaching d'Entreprises",
+  },
   { titre: "Département Planification et Projets" },
   { titre: "Département Suivi-Évaluation, Redevabilité et Contrôle Qualité" },
   { titre: "Département Environnement, Climat et Genre" },
