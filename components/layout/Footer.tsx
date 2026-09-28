@@ -75,8 +75,11 @@ export default function Footer() {
           <p className="text-sm font-medium text-germe-wheat">Contact</p>
           <ul className="mt-3 space-y-2 text-sm text-white/75">
             <li>
-              <a href="mailto:info.germecam@gmail.com" className="hover:text-white">
-                info.germecam@gmail.com
+              <a
+                href="mailto:info.germecam@gmail.com"
+                className="hover:text-white"
+              >
+                germecameroun.org@gmail.com
               </a>
             </li>
             <li>

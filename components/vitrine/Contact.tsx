@@ -10,7 +10,9 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [envoi, setEnvoi] = useState(false);
-  const [statut, setStatut] = useState<"inactif" | "succes" | "erreur">("inactif");
+  const [statut, setStatut] = useState<"inactif" | "succes" | "erreur">(
+    "inactif",
+  );
   const [erreur, setErreur] = useState<string | null>(null);
 
   async function envoyer(e: React.FormEvent) {
@@ -58,7 +60,7 @@ export default function Contact() {
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-germe-blue">
                 ✉️
               </span>
-              info.germecam@gmail.com
+              germecameroun.org@gmail.com
             </a>
             <a
               href="tel:+237690308378"
@@ -88,7 +90,10 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={120}>
-          <form onSubmit={envoyer} className="rounded-2xl bg-germe-cream p-6 md:p-8">
+          <form
+            onSubmit={envoyer}
+            className="rounded-2xl bg-germe-cream p-6 md:p-8"
+          >
             <h3 className="font-display text-lg font-semibold text-germe-ink">
               Contactez-nous
             </h3>
