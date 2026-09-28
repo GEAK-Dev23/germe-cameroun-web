@@ -6,7 +6,7 @@ import MirrorImage from "@/components/vitrine/MirrorImage";
 const CHIFFRES = [
   { valeur: 3500, prefixe: "+", suffixe: "", label: "jeunes et femmes formés" },
   {
-    valeur: 68,
+    valeur: 88,
     prefixe: "",
     suffixe: "%",
     label: "de taux d'insertion économique après formation",
