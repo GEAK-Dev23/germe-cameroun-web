@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "GERME Cameroun — Formations en agriculture et élevage",
+  title: "GERME Cameroun — Entrepreneuriat et développement économique",
   description:
-    "GERME Cameroun forme les entrepreneurs agricoles de demain : cours pratiques, certification et accompagnement vers un plan d'affaires.",
+    "GERME Cameroun est une structure d'appui à l'entrepreneuriat et au développement économique local : formation, accompagnement/coaching d'entreprises et renforcement de capacités.",
 };
 
 export default function RootLayout({
