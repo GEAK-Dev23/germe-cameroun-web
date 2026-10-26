@@ -39,7 +39,7 @@ export default function PresentationVideo() {
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-germe-ink/70">
             Le mot de notre Président : notre histoire, notre méthode et nos
-            résultats en quelques minutes. Vidéo en anglais, sous-titrée en
+            résultats en quelques minutes. Vidéo en francais, sous-titrée en
             anglais.
           </p>
         </Reveal>
