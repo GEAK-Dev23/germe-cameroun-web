@@ -1,4 +1,5 @@
 import Hero from "@/components/vitrine/Hero";
+import PresentationVideo from "@/components/vitrine/PresentationVideo";
 import Inspiration from "@/components/vitrine/Inspiration";
 import Mission from "@/components/vitrine/Mission";
 import Vision from "@/components/vitrine/Vision";
@@ -15,6 +16,7 @@ export default function VitrinePage() {
   return (
     <>
       <Hero />
+      <PresentationVideo />
       <Inspiration />
       <Mission />
       <Vision />
